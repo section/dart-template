@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dart
+  labels:
+    app: dart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dart
+  template:
+    metadata:
+      labels:
+        app: dart
+    spec:
+      containers:
+      - name: dart
+        image: ghcr.io/${IMAGE_NAME}:main
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: ".1"
+            memory: ".1Gi"
+          limits:
+            cpu: ".1"
+            memory: ".1Gi"
+        ports:
+        - containerPort: 8080
